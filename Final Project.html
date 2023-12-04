@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="system.css">
+    <title>Final Project</title>
+    <h1 style="text-align: center;color: rgb(4, 4, 4);" >Final Project</h1>
+    <style>
+      body {
+  background-image: url(op.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+ }
+    </style>
+</head>
+<body>
+    <h3 style="text-align: center;color: rgb(4, 5, 5);">This project was made by</h3>
+    
+
+    <ul class="a">
+
+        <li><a href="contact us.html">contact us</a></li>
+        <li><a href="Final Project.html">group members</a></li><br>
+        <li>Khaled Salem Al-Amiri</li>
+        <li>Khaled Muhammad Youssef</li>
+      </ul>
+      <br>
+      <p style="color: rgb(8, 9, 9); font-style: italic;">This project was made using Visual Studio code using HTML, CSS, and JavaScript.</p>
+
+      <h1 id="nameDisplay"></h1>
+
+  <script  >
+      names = ["خالد سالم", "خالد غماري"];
+
+    function updateName() {
+       document.getElementById("nameDisplay");
+      randomIndex = Math.floor(Math.random() * names.length);
+      nameDisplay.textContent = names[randomIndex];
+    }
+
+    
+    updateName();
+  </script>
+          <div class="taskbar">
+            <button onclick="window.location.href = 'desktop.html'" id="start"><img src="start.png" alt="start" style="width: 30px;"  > start</button>
+            <button onclick="window.location.href = 'video.html'" class="program2"><img src="video.png" alt="video" class="program">video</button>
+            <button onclick="window.location.href = 'Final Project.html'" class="program2"><img src="note.png" alt="image" class="program"> about us</button>
+            <button onclick="window.location.href = 'grade.html'" class="program2"><img src="excel.png" alt="excel" class="program"> grade</button>
+            <button onclick="window.location.href = 'contact us.html'" class="program2"><img src="contact.png" alt="excel" class="program"> contact us </button>
+            <button onclick="window.location.href = 'image.html'" class="program2"><img src="images.png" alt="excel" class="program"> image</button>
+        </div>
+
+</body>
+</html>
