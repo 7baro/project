@@ -1,66 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Evento - Reserve Chalets & Halls</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-
     <div class="top-bar">
         <div class="logo"></i>Evento</div>
         <div class="top-buttons">
             <button class="lang-btn" id="language-toggle"><i class="fas fa-globe"></i>العربية</button>
-            <button class="signin-btn"><i class="fas fa-user"></i>Sign In</button>
+            <button class="signin-btn"><i class="fas fa-user"></i><span id="signin-text">Sign In</span></button>
         </div>
     </div>
 
     <div class="filter-bar">
         <div class="filters">
             <div class="filter">
-                <label id="property-type-label">Type</label>
+                <label id="property-type-label">Property Type</label>
                 <select id="property-type">
-                
+                    <option value="">Select Type</option>
                     <option value="chalet">Chalet</option>
                     <option value="hall">Hall</option>
                 </select>
             </div>
-            <div class="filter">
-                <label id="check-in-label">Check in Date</label>
-                <input type="date" id="check-in" class="large-date">
+
+           
+            <div class="filter" id="checkin-filter">
+                <label id="check-in-label"><i class="fas fa-calendar-check"></i> Check-in Date</label>
+            
+                <div class="date-input" id="check-in-display">
+                    <i class="fas fa-calendar"></i> Select date
+                </div>
             </div>
-            <div class="filter">
-                <label id="check-out-label">Check out Date</label>
-                <input type="date" id="check-out" class="large-date">
+
+           
+            <div class="filter" id="checkout-filter">
+                <label id="check-out-label"><i class="fas fa-calendar-times"></i> Check-out Date</label>
+               
+                <div class="date-input" id="check-out-display">
+                    <i class="fas fa-calendar"></i> Select date
+                </div>
             </div>
+
             <button class="search-btn"><i class="fas fa-search"></i><span id="search-text">Search</span></button>
         </div>
     </div>
 
+
+    <div class="calendar" id="shared-calendar" aria-hidden="true">
+        <div class="calendar-header">
+            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+            <div class="month-year-display">
+                <span class="month-name" id="current-month">Month</span>
+                <span id="current-year">Year</span>
+            </div>
+            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="calendar-grid" id="days-header">
+       
+        </div>
+
+        <div class="calendar-grid" id="calendar-days">
+           
+        </div>
+    </div>
+
+    
     <div class="container">
-        <h2 class="section-title" id="available-title">Chalets & Halls</h2>
+        <h2 class="section-title" id="available-title">Available Chalets & Halls</h2>
         <div class="properties">
+            
             <div class="property-card">
                 <div class="property-image">placeholder</div>
                 <div class="property-details">
                     <h3 class="property-title" id="property-title-1">placeholder</h3>
                     <ul class="property-features">
-                        <li><i class="fas fa-users"></i><span id="feature-1">Up to 10 guests</span></li>
-                        <li><i class="fas fa-bed"></i><span id="feature-2">4 bedrooms</span></li>
-                        <li><i class="fas fa-bath"></i><span id="feature-3">3 bathrooms</span></li>
-                        <li><i class="fas fa-vector-square"></i><span id="feature-4">220 m²</span></li>
+                        <li><i class="fas fa-users"></i><span id="feature-1">Up to ? guests</span></li>
+                        <li><i class="fas fa-bed"></i><span id="feature-2">? bedrooms</span></li>
+                        <li><i class="fas fa-bath"></i><span id="feature-3">? bathrooms</span></li>
+                        <li><i class="fas fa-vector-square"></i><span id="feature-4">? m²</span></li>
                     </ul>
-                    <div class="property-price">$???? / <span id="night-text">night</span></div>
+                    <div class="property-price">??? / <span id="night-text">night</span></div>
                     <a href="#" class="view-details"><i class="fas fa-info-circle"></i><span id="details-text">View Details</span></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <input type="date" id="check-in" style="display:none">
+    <input type="date" id="check-out" style="display:none">
 
+    <script src="script.js"></script>
 </body>
 </html>
