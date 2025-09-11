@@ -1,99 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Evento - Reserve Chalets & Halls</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evento</title>
+  <!-- ربط ملف CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="top-bar">
-        <div class="logo"></i>Evento</div>
-        <div class="top-buttons">
-            <button class="lang-btn" id="language-toggle"><i class="fas fa-globe"></i>العربية</button>
-            <button class="signin-btn"><i class="fas fa-user"></i><span id="signin-text">Sign In</span></button>
-        </div>
+
+  <!-- اختيار اللغة -->
+  <div style="position: absolute; top: 10px; left: 10px;">
+    <select id="language">
+      <option value="ar">العربية</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <!-- صفحة تسجيل الدخول -->
+  <div class="page active" id="loginPage">
+    <div class="box">
+      <h2 data-lang-ar="تسجيل الدخول" data-lang-en="Login">تسجيل الدخول</h2>
+      <input type="text" data-lang-ar="البريد الإلكتروني" data-lang-en="Email" placeholder="البريد الإلكتروني" required>
+      <input type="password" data-lang-ar="كلمة المرور" data-lang-en="Password" placeholder="كلمة المرور" required>
+      <button data-lang-ar="دخول" data-lang-en="Login" onclick="goToPage('dashboardPage')">دخول</button>
+      <a href="#" data-lang-ar="إنشاء حساب جديد" data-lang-en="Create new account" onclick="goToPage('signupPage')">إنشاء حساب جديد</a>
     </div>
+  </div>
 
-    <div class="filter-bar">
-        <div class="filters">
-            <div class="filter">
-                <label id="property-type-label">Property Type</label>
-                <select id="property-type">
-                    <option value="">Select Type</option>
-                    <option value="chalet">Chalet</option>
-                    <option value="hall">Hall</option>
-                </select>
-            </div>
-
-           
-            <div class="filter" id="checkin-filter">
-                <label id="check-in-label"><i class="fas fa-calendar-check"></i> Check-in Date</label>
-            
-                <div class="date-input" id="check-in-display">
-                    <i class="fas fa-calendar"></i> Select date
-                </div>
-            </div>
-
-           
-            <div class="filter" id="checkout-filter">
-                <label id="check-out-label"><i class="fas fa-calendar-times"></i> Check-out Date</label>
-               
-                <div class="date-input" id="check-out-display">
-                    <i class="fas fa-calendar"></i> Select date
-                </div>
-            </div>
-
-            <button class="search-btn"><i class="fas fa-search"></i><span id="search-text">Search</span></button>
-        </div>
+  <!-- صفحة التسجيل -->
+  <div class="page" id="signupPage">
+    <div class="box">
+      <h2 data-lang-ar="إنشاء حساب" data-lang-en="Sign Up">إنشاء حساب</h2>
+      <input type="text" placeholder="الاسم الكامل" data-lang-ar="الاسم الكامل" data-lang-en="Full Name" required>
+      <input type="email" placeholder="البريد الإلكتروني" data-lang-ar="البريد الإلكتروني" data-lang-en="Email" required>
+      <input type="text" placeholder="رقم الجوال" data-lang-ar="رقم الجوال" data-lang-en="Phone Number" required>
+      <input type="password" placeholder="كلمة المرور" data-lang-ar="كلمة المرور" data-lang-en="Password" required>
+      <button data-lang-ar="تسجيل" data-lang-en="Register" onclick="goToPage('loginPage')">تسجيل</button>
+      <a href="#" data-lang-ar="لديك حساب؟ تسجيل الدخول" data-lang-en="Already have an account? Login" onclick="goToPage('loginPage')">لديك حساب؟ تسجيل الدخول</a>
     </div>
+  </div>
 
+  <!-- صفحة Dashboard -->
+  <div class="page" id="dashboardPage">
+    <div style="width: 100%;">
+      <header class="navbar">
+        <h1>Evento</h1>
+        <nav>
+          <a href="#" data-lang-ar="الرئيسية" data-lang-en="Home">الرئيسية</a>
+          <a href="#" data-lang-ar="الحجوزات" data-lang-en="Bookings">الحجوزات</a>
+          <a href="#" data-lang-ar="تسجيل خروج" data-lang-en="Logout" onclick="goToPage('loginPage')">تسجيل خروج</a>
+        </nav>
+      </header>
 
-    <div class="calendar" id="shared-calendar" aria-hidden="true">
-        <div class="calendar-header">
-            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
-            <div class="month-year-display">
-                <span class="month-name" id="current-month">Month</span>
-                <span id="current-year">Year</span>
-            </div>
-            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+      <main class="content">
+        <h2 data-lang-ar="القاعات والشاليهات المتاحة" data-lang-en="Available Halls & Chalets">القاعات والشاليهات المتاحة</h2>
+        <div class="cards">
+          <div class="card">
+            <img src="ttr.jpg" alt="قاعة أفراح">
+            <h3 data-lang-ar="قاعة روفال" data-lang-en="Roval Hall">قاعة روفال</h3>
+            <p data-lang-ar="قاعة فخمة تتسع لـ 300 شخص." data-lang-en="A luxury hall that accommodates 300 people.">قاعة فخمة تتسع لـ 300 شخص.</p>
+            <button data-lang-ar="حجز الآن" data-lang-en="Book Now">حجز الآن</button>
+          </div>
+
+          <div class="card">
+            <img src="ss.jpg" alt="شاليه عائلي">
+            <h3 data-lang-ar="شاليه روفا" data-lang-en="Rova Chalet">شاليه روفا</h3>
+            <p data-lang-ar="شاليه مع مسبح وحديقة خاصة." data-lang-en="Chalet with pool and private garden.">شاليه مع مسبح وحديقة خاصة.</p>
+            <button data-lang-ar="حجز الآن" data-lang-en="Book Now">حجز الآن</button>
+          </div>
         </div>
-
-        <div class="calendar-grid" id="days-header">
-       
-        </div>
-
-        <div class="calendar-grid" id="calendar-days">
-           
-        </div>
+      </main>
     </div>
+  </div>
 
-    
-    <div class="container">
-        <h2 class="section-title" id="available-title">Available Chalets & Halls</h2>
-        <div class="properties">
-            
-            <div class="property-card">
-                <div class="property-image">placeholder</div>
-                <div class="property-details">
-                    <h3 class="property-title" id="property-title-1">placeholder</h3>
-                    <ul class="property-features">
-                        <li><i class="fas fa-users"></i><span id="feature-1">Up to ? guests</span></li>
-                        <li><i class="fas fa-bed"></i><span id="feature-2">? bedrooms</span></li>
-                        <li><i class="fas fa-bath"></i><span id="feature-3">? bathrooms</span></li>
-                        <li><i class="fas fa-vector-square"></i><span id="feature-4">? m²</span></li>
-                    </ul>
-                    <div class="property-price">??? / <span id="night-text">night</span></div>
-                    <a href="#" class="view-details"><i class="fas fa-info-circle"></i><span id="details-text">View Details</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
+  <!-- سكربت الصفحات -->
+  <script>
+    function goToPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
 
-    <input type="date" id="check-in" style="display:none">
-    <input type="date" id="check-out" style="display:none">
+  <!-- سكربت اللغة -->
+  <script>
+    const langSelect = document.getElementById("language");
 
-    <script src="script.js"></script>
+    langSelect.addEventListener("change", () => {
+      const chosenLang = langSelect.value;
+
+      // تغيير الاتجاه واللغة
+      if (chosenLang === "ar") {
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+      } else {
+        document.documentElement.lang = "en";
+        document.documentElement.dir = "ltr";
+      }
+
+      // تغيير النصوص حسب اللغة
+      document.querySelectorAll("[data-lang-ar]").forEach(el => {
+        el.textContent = el.getAttribute(`data-lang-${chosenLang}`);
+        if (el.placeholder !== undefined && el.getAttribute(`data-lang-${chosenLang}`)) {
+          el.placeholder = el.getAttribute(`data-lang-${chosenLang}`);
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
