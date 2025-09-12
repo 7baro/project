@@ -15,8 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageToggle = document.getElementById('language-toggle');
     let isArabic = false;
 
+    const signinBtn = document.getElementById('signin-btn');
+    const signinModal = document.getElementById('signin-modal');
+    const modalClose = document.getElementById('modal-close');
+    const btnNext = document.getElementById('btn-next');
+    const btnBack = document.getElementById('btn-back');
+    const btnSubmit = document.getElementById('btn-submit');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    let currentStep = 1;
+
     let today = new Date();
-    let currentDate = new Date(today.getFullYear(), today.getMonth(), 1); 
+    let currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
     let selectedCheckIn = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     let selectedCheckOut = new Date(selectedCheckIn.getTime() + 24*60*60*1000);
     let activeField = 'check-in';
@@ -47,7 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
         "feature-3": "3 حمامات",
         "feature-4": "220 متر مربع",
         "night-text": "ليلة",
-        "details-text": "عرض التفاصيل"
+        "details-text": "عرض التفاصيل",
+        "welcome-title": "أهلاً بك!",
+        "welcome-subtitle": "أدخل رقم هاتفك لإنشاء حساب أو تسجيل الدخول",
+        "phone-label": "رقم الهاتف",
+        "firstname-placeholder": "الاسم الأول",
+        "familyname-placeholder": "اسم العائلة",
+        "email-placeholder": "البريد الإلكتروني",
+        "thankyou-title": "تم بنجاح!",
+        "thankyou-message": "تم إنشاء حسابك بنجاح.",
+        "btn-next": "متابعة",
+        "btn-back": "رجوع",
+        "btn-submit": "إنشاء حساب"
     };
 
     const englishTranslations = {
@@ -67,7 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
         "feature-3": "3 bathrooms",
         "feature-4": "220 m²",
         "night-text": "night",
-        "details-text": "View Details"
+        "details-text": "View Details",
+        "welcome-title": "Welcome!",
+        "welcome-subtitle": "Enter your phone number to create account or login",
+        "phone-label": "Phone Number",
+        "firstname-placeholder": "First Name",
+        "familyname-placeholder": "Family Name",
+        "email-placeholder": "Email Address",
+        "thankyou-title": "Success!",
+        "thankyou-message": "Your account has been created successfully.",
+        "btn-next": "Continue",
+        "btn-back": "Back",
+        "btn-submit": "Create Account"
     };
 
     function formatISO(d) {
@@ -78,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function formatWithNames(d) {
-        const dayName = dayNames[(d.getDay()+6)%7]; 
+        const dayName = dayNames[(d.getDay()+6)%7];
         const monthName = monthNames[d.getMonth()];
         return `${dayName}, ${monthName} ${d.getDate()}, ${d.getFullYear()}`;
     }
@@ -91,9 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.textContent = name;
             daysHeader.appendChild(el);
         });
-
         updateDisplays();
-
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     }
 
@@ -108,14 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
         currentMonthEl.textContent = monthNames[month];
         currentYearEl.textContent = year;
         calendarDays.innerHTML = '';
-
-        const firstDay = new Date(year, month, 1).getDay(); // 0 = Sun
+        const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const daysInPrevMonth = new Date(year, month, 0).getDate();
 
         for (let i = firstDay - 1; i >= 0; i--) {
             const dayNum = daysInPrevMonth - i;
-            const dayIndex = (firstDay - 1 - i) % 7;
             const d = new Date(year, month - 1, dayNum);
             const cell = createDayCell(d, true);
             calendarDays.appendChild(cell);
@@ -140,26 +169,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function createDayCell(d, otherMonth) {
         const cell = document.createElement('div');
         cell.className = 'calendar-day' + (otherMonth ? ' other-month' : '');
-
         const dayIndex = d.getDay();
         const dayNameText = dayNames[dayIndex];
         const dayNumberText = d.getDate();
-
         cell.innerHTML = `<span class="day-name">${dayNameText}</span><span class="day-number">${dayNumberText}</span>`;
-
         const isToday = d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth() && d.getDate() === today.getDate();
         if (isToday) cell.classList.add('today');
-
         if (datesEqual(d, selectedCheckIn)) cell.classList.add('selected');
         if (datesEqual(d, selectedCheckOut)) {
             if (!cell.classList.contains('selected')) cell.classList.add('selected');
         }
-
         cell.addEventListener('click', (e) => {
             e.stopPropagation();
             onDayPicked(new Date(d.getFullYear(), d.getMonth(), d.getDate()));
         });
-
         return cell;
     }
 
@@ -177,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const minIn = new Date(selectedCheckOut.getTime() - 24*60*60*1000);
             if (selectedCheckOut <= selectedCheckIn) selectedCheckIn = minIn;
         }
-
         updateDisplays();
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
         hideCalendar();
@@ -187,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
         activeField = forField;
         calendar.style.display = 'block';
         calendar.setAttribute('aria-hidden', 'false');
-
         if (forField === 'check-in' && selectedCheckIn) {
             currentDate = new Date(selectedCheckIn.getFullYear(), selectedCheckIn.getMonth(), 1);
         } else if (forField === 'check-out' && selectedCheckOut) {
@@ -196,14 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
             currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
         }
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-
         const rect = anchorEl.getBoundingClientRect();
         const top = rect.bottom + 6;
         const left = rect.left;
         const maxRight = window.innerWidth - 12;
         let finalLeft = left;
         if (finalLeft + calendar.offsetWidth > maxRight) finalLeft = Math.max(12, maxRight - calendar.offsetWidth);
-
         calendar.style.top = `${top}px`;
         calendar.style.left = `${finalLeft}px`;
     }
@@ -262,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(englishTranslations);
             languageToggle.innerHTML = '<i class="fas fa-globe"></i>العربية';
         }
-
         daysHeader.innerHTML = '';
         dayNames.forEach(name => {
             const el = document.createElement('div');
@@ -270,7 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
             el.textContent = name;
             daysHeader.appendChild(el);
         });
-
         updateDisplays();
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     });
@@ -285,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('check-in-label').textContent = t['check-in-label'];
         document.getElementById('check-out-label').textContent = t['check-out-label'];
         document.getElementById('search-text').textContent = t['search-text'];
-
         document.getElementById('available-title').textContent = t['available-title'];
         document.getElementById('property-title-1').textContent = t['property-title-1'];
         document.getElementById('feature-1').textContent = t['feature-1'];
@@ -294,9 +310,95 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('feature-4').textContent = t['feature-4'];
         document.getElementById('night-text').textContent = t['night-text'];
         document.getElementById('details-text').textContent = t['details-text'];
+        document.getElementById('welcome-title').textContent = t['welcome-title'];
+        document.getElementById('welcome-subtitle').textContent = t['welcome-subtitle'];
+        document.getElementById('phone-number').placeholder = t['phone-label'];
+        document.getElementById('first-name').placeholder = t['firstname-placeholder'];
+        document.getElementById('family-name').placeholder = t['familyname-placeholder'];
+        document.getElementById('email').placeholder = t['email-placeholder'];
+        document.getElementById('thankyou-title').textContent = t['thankyou-title'];
+        document.getElementById('thankyou-message').textContent = t['thankyou-message'];
+        document.getElementById('btn-next').textContent = t['btn-next'];
+        document.getElementById('btn-back').textContent = t['btn-back'];
+        document.getElementById('btn-submit').textContent = t['btn-submit'];
+    }
+
+    signinBtn.addEventListener('click', () => {
+        resetModal();
+        signinModal.style.display = 'flex';
+    });
+
+    modalClose.addEventListener('click', () => {
+        signinModal.style.display = 'none';
+    });
+
+    signinModal.addEventListener('click', (e) => {
+        if (e.target === signinModal) {
+            signinModal.style.display = 'none';
+        }
+    });
+
+    btnNext.addEventListener('click', () => {
+        if (currentStep === 1) {
+            const phoneNumber = document.getElementById('phone-number').value;
+            if (!phoneNumber) {
+                alert(isArabic ? "يرجى إدخال رقم الهاتف" : "Please enter your phone number");
+                return;
+            }
+            step1.classList.remove('active');
+            step2.classList.add('active');
+            btnNext.style.display = 'none';
+            btnBack.style.display = 'block';
+            btnSubmit.style.display = 'block';
+            currentStep = 2;
+        }
+    });
+
+    btnBack.addEventListener('click', () => {
+        if (currentStep === 2) {
+            step2.classList.remove('active');
+            step1.classList.add('active');
+            btnNext.style.display = 'block';
+            btnBack.style.display = 'none';
+            btnSubmit.style.display = 'none';
+            currentStep = 1;
+        }
+    });
+
+    btnSubmit.addEventListener('click', () => {
+        if (currentStep === 2) {
+            const firstName = document.getElementById('first-name').value;
+            const familyName = document.getElementById('family-name').value;
+            const email = document.getElementById('email').value;
+            if (!firstName || !familyName || !email) {
+                alert(isArabic ? "يرجى ملء جميع الحقول" : "Please fill all fields");
+                return;
+            }
+            step2.classList.remove('active');
+            step3.classList.add('active');
+            btnBack.style.display = 'none';
+            btnSubmit.style.display = 'none';
+            currentStep = 3;
+            setTimeout(() => {
+                signinModal.style.display = 'none';
+            }, 2000);
+        }
+    });
+
+    function resetModal() {
+        step1.classList.add('active');
+        step2.classList.remove('active');
+        step3.classList.remove('active');
+        btnNext.style.display = 'block';
+        btnBack.style.display = 'none';
+        btnSubmit.style.display = 'none';
+        currentStep = 1;
+        document.getElementById('phone-number').value = '';
+        document.getElementById('first-name').value = '';
+        document.getElementById('family-name').value = '';
+        document.getElementById('email').value = '';
     }
 
     applyTranslations(englishTranslations);
-
     init();
 });
