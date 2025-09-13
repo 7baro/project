@@ -398,7 +398,6 @@ body.rtl .modal-close {
     }
 }
 
-/* زر تغيير الثيم (فاتح/غامق) */
 .theme-btn {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
@@ -414,7 +413,6 @@ body.rtl .modal-close {
 }
 .theme-btn:hover { background-color: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
 
-/* الثيم الغامق */
 body.dark {
     background-color: #0f1216;
     color: #e5e7eb;
@@ -495,4 +493,3 @@ body.dark .form-group select:focus {
 body.dark .btn-next { background: linear-gradient(135deg, #3a86ff 0%, #2155a3 100%); }
 body.dark .btn-back { background: #17202a; color: #9cc4e2; }
 body.dark .btn-submit { background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); }
-
