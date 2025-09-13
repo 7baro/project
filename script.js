@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageToggle = document.getElementById('language-toggle');
     let isArabic = false;
 
+    /* تعريف زر تغيير الثيم  */
+    const themeToggle = document.getElementById('theme-toggle') || document.querySelector('.theme-btn');
+
     const signinBtn = document.getElementById('signin-btn');
     const signinModal = document.getElementById('signin-modal');
     const modalClose = document.getElementById('modal-close');
@@ -290,6 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         updateDisplays();
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+
+        /*  زر الثيم بعد تغيير اللغة */
+        const currentlyDark = document.body.classList.contains('dark');
+        if (themeToggle) {
+            const span = themeToggle.querySelector('#theme-text') || themeToggle.querySelector('span');
+            if (span) span.textContent = currentlyDark ? (isArabic ? 'فاتح' : 'Light') : (isArabic ? 'غامق' : 'Dark');
+        }
     });
 
     function applyTranslations(t) {
@@ -401,4 +411,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyTranslations(englishTranslations);
     init();
+
+    /* دوال الثيم الوضع الفاتح/الغامق  */
+    function setTheme(isDark) {
+        document.body.classList.toggle('dark', isDark);
+        const icon = isDark ? 'fa-sun' : 'fa-moon';
+        const text = isDark ? (isArabic ? 'فاتح' : 'Light') : (isArabic ? 'غامق' : 'Dark');
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+            const i = themeToggle.querySelector('i');
+            const span = themeToggle.querySelector('#theme-text') || themeToggle.querySelector('span');
+            if (i) { i.classList.remove('fa-moon','fa-sun'); i.classList.add(icon); }
+            if (span) { span.textContent = text; }
+        }
+        try { localStorage.setItem('evento_theme', isDark ? 'dark' : 'light'); } catch(_) {}
+    }
+
+    function initTheme() {
+        let isDark = false;
+        try {
+            const saved = localStorage.getItem('evento_theme');
+            if (saved) {
+                isDark = (saved === 'dark');
+            } else if (window.matchMedia) {
+                isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+        } catch(_) {}
+        setTheme(isDark);
+    }
+
+    /* يحفظ اخر تفضيل ما بين الفاتح / الغامق*/
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const willBeDark = !document.body.classList.contains('dark');
+            setTheme(willBeDark);
+        });
+    }
+    initTheme();
 });
