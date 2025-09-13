@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageToggle = document.getElementById('language-toggle');
     let isArabic = false;
 
-    /* تعريف زر تغيير الثيم  */
     const themeToggle = document.getElementById('theme-toggle') || document.querySelector('.theme-btn');
 
     const signinBtn = document.getElementById('signin-btn');
@@ -55,12 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
         "check-out-label": "تاريخ المغادرة",
         "search-text": "بحث",
         "available-title": "الشاليهات والقاعات المتاحة",
-        "property-title-1": "شاليه جبلي فاخر",
-        "feature-1": "حتى 10 ضيوف",
-        "feature-2": "4 غرف نوم",
-        "feature-3": "3 حمامات",
-        "feature-4": "220 متر مربع",
-        "night-text": "ليلة",
+        "property-title-1": "placeholder",
+  "up-to-guests": "حتى ??? ضيوف",
+  "bedrooms": "??? غرف نوم",
+  "bathrooms": "??? حمامات",
+  "area": "??? م²",
+  "night": "ليلة",
+  "view-details": "عرض التفاصيل",
         "details-text": "عرض التفاصيل",
         "welcome-title": "أهلاً بك!",
         "welcome-subtitle": "أدخل رقم هاتفك لإنشاء حساب أو تسجيل الدخول",
@@ -86,13 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
         "check-out-label": "Check-out Date",
         "search-text": "Search",
         "available-title": "Available Chalets & Halls",
-        "property-title-1": "Luxury Mountain Chalet",
-        "feature-1": "Up to 10 guests",
-        "feature-2": "4 bedrooms",
-        "feature-3": "3 bathrooms",
-        "feature-4": "220 m²",
-        "night-text": "night",
-        "details-text": "View Details",
+  "property-title": "placeholder",
+  "up-to-guests": "Up to ??? guests",
+  "bedrooms": "??? bedrooms",
+  "bathrooms": "??? bathrooms",
+  "area": "??? m²",
+  "night": "night",
+  "view-details": "View Details",
         "welcome-title": "Welcome!",
         "welcome-subtitle": "Enter your phone number to create account or login",
         "phone-label": "Phone Number",
@@ -294,7 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplays();
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
 
-        /*  زر الثيم بعد تغيير اللغة */
         const currentlyDark = document.body.classList.contains('dark');
         if (themeToggle) {
             const span = themeToggle.querySelector('#theme-text') || themeToggle.querySelector('span');
@@ -302,36 +301,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function applyTranslations(t) {
-        document.getElementById('signin-text').textContent = t['signin-text'];
-        document.getElementById('property-type-label').textContent = t['property-type-label'];
-        const propertyType = document.getElementById('property-type');
-        propertyType.options[0].text = t['property-type-option'];
-        propertyType.options[1].text = t['chalet-option'];
-        propertyType.options[2].text = t['hall-option'];
-        document.getElementById('check-in-label').textContent = t['check-in-label'];
-        document.getElementById('check-out-label').textContent = t['check-out-label'];
-        document.getElementById('search-text').textContent = t['search-text'];
-        document.getElementById('available-title').textContent = t['available-title'];
-        document.getElementById('property-title-1').textContent = t['property-title-1'];
-        document.getElementById('feature-1').textContent = t['feature-1'];
-        document.getElementById('feature-2').textContent = t['feature-2'];
-        document.getElementById('feature-3').textContent = t['feature-3'];
-        document.getElementById('feature-4').textContent = t['feature-4'];
-        document.getElementById('night-text').textContent = t['night-text'];
-        document.getElementById('details-text').textContent = t['details-text'];
-        document.getElementById('welcome-title').textContent = t['welcome-title'];
-        document.getElementById('welcome-subtitle').textContent = t['welcome-subtitle'];
-        document.getElementById('phone-number').placeholder = t['phone-label'];
-        document.getElementById('first-name').placeholder = t['firstname-placeholder'];
-        document.getElementById('family-name').placeholder = t['familyname-placeholder'];
-        document.getElementById('email').placeholder = t['email-placeholder'];
-        document.getElementById('thankyou-title').textContent = t['thankyou-title'];
-        document.getElementById('thankyou-message').textContent = t['thankyou-message'];
-        document.getElementById('btn-next').textContent = t['btn-next'];
-        document.getElementById('btn-back').textContent = t['btn-back'];
-        document.getElementById('btn-submit').textContent = t['btn-submit'];
-    }
+function applyTranslations(t) {
+    document.getElementById('signin-text').textContent = t['signin-text'];
+    document.getElementById('property-type-label').textContent = t['property-type-label'];
+    const propertyType = document.getElementById('property-type');
+    propertyType.options[0].text = t['property-type-option'];
+    propertyType.options[1].text = t['chalet-option'];
+    propertyType.options[2].text = t['hall-option'];
+    document.getElementById('check-in-label').textContent = t['check-in-label'];
+    document.getElementById('check-out-label').textContent = t['check-out-label'];
+    document.getElementById('search-text').textContent = t['search-text'];
+    document.getElementById('available-title').textContent = t['available-title'];
+    document.getElementById('welcome-title').textContent = t['welcome-title'];
+    document.getElementById('welcome-subtitle').textContent = t['welcome-subtitle'];
+    document.getElementById('phone-number').placeholder = t['phone-label'];
+    document.getElementById('first-name').placeholder = t['firstname-placeholder'];
+    document.getElementById('family-name').placeholder = t['familyname-placeholder'];
+    document.getElementById('email').placeholder = t['email-placeholder'];
+    document.getElementById('thankyou-title').textContent = t['thankyou-title'];
+    document.getElementById('thankyou-message').textContent = t['thankyou-message'];
+    document.getElementById('btn-next').textContent = t['btn-next'];
+    document.getElementById('btn-back').textContent = t['btn-back'];
+    document.getElementById('btn-submit').textContent = t['btn-submit'];
+    
+    document.querySelectorAll('.translate').forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (t[key]) {
+            element.textContent = t[key];
+        }
+    });
+}
 
     signinBtn.addEventListener('click', () => {
         resetModal();
@@ -412,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTranslations(englishTranslations);
     init();
 
-    /* دوال الثيم الوضع الفاتح/الغامق  */
     function setTheme(isDark) {
         document.body.classList.toggle('dark', isDark);
         const icon = isDark ? 'fa-sun' : 'fa-moon';
@@ -440,7 +438,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTheme(isDark);
     }
 
-    /* يحفظ اخر تفضيل ما بين الفاتح / الغامق*/
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const willBeDark = !document.body.classList.contains('dark');
