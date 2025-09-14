@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+     
+   // ===== التحقق =====
+function isValidPhone(phone) {
+    return /^[0-9]{8,15}$/.test(phone.trim());
+}
+function isValidName(name) {
+    return /^[\u0621-\u064Aa-zA-Z\s]+$/.test(name.trim());
+}
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+// ==================
+
     const checkInDisplay = document.getElementById('check-in-display');
     const checkOutDisplay = document.getElementById('check-out-display');
     const checkInHidden = document.getElementById('check-in');
@@ -349,10 +362,10 @@ function applyTranslations(t) {
 
     btnNext.addEventListener('click', () => {
         if (currentStep === 1) {
-            const phoneNumber = document.getElementById('phone-number').value;
-            if (!phoneNumber) {
-                alert(isArabic ? "يرجى إدخال رقم الهاتف" : "Please enter your phone number");
-                return;
+        const phoneNumber = document.getElementById('phone-number').value;
+        if (!isValidPhone(phoneNumber)) {
+            alert(isArabic ? "أدخل رقم هاتف صحيح (أرقام فقط)" : "Enter a valid phone number (digits only)");
+            return;
             }
             step1.classList.remove('active');
             step2.classList.add('active');
@@ -375,13 +388,22 @@ function applyTranslations(t) {
     });
 
     btnSubmit.addEventListener('click', () => {
-        if (currentStep === 2) {
-            const firstName = document.getElementById('first-name').value;
-            const familyName = document.getElementById('family-name').value;
-            const email = document.getElementById('email').value;
-            if (!firstName || !familyName || !email) {
-                alert(isArabic ? "يرجى ملء جميع الحقول" : "Please fill all fields");
-                return;
+         if (currentStep === 2) {
+        const firstName = document.getElementById('first-name').value;
+        const familyName = document.getElementById('family-name').value;
+        const email = document.getElementById('email').value;
+
+        if (!isValidName(firstName)) {
+            alert(isArabic ? "أدخل الاسم الأول صحيح (حروف فقط)" : "Enter a valid first name (letters only)");
+            return;
+        }
+        if (!isValidName(familyName)) {
+            alert(isArabic ? "أدخل اسم العائلة صحيح (حروف فقط)" : "Enter a valid family name (letters only)");
+            return;
+        }
+        if (!isValidEmail(email)) {
+            alert(isArabic ? "أدخل بريد إلكتروني صحيح" : "Enter a valid email address");
+            return;
             }
             step2.classList.remove('active');
             step3.classList.add('active');
@@ -445,4 +467,8 @@ function applyTranslations(t) {
         });
     }
     initTheme();
+
+
+
+    
 });
