@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,9 @@
     <title>Property Details - Evento</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dark.CSS">
-    <link rel="stylesheet" href="detailstyle.CSS">
+ <link rel="stylesheet" href="dark.css">
+<link rel="stylesheet" href="detailstyle.css">
+
 </head>
 <body>
     <div class="top-bar">
@@ -67,31 +69,22 @@
                 <div class="property-description">
                     <p>placeholder</p>
                 </div>
-
 <div class="booking-widget">
-    <h3 class="booking-title">Book This Property شكلها خايس لازم نعدلها</h3>
+    <h3 class="booking-title">🏡 Book This Property</h3>
     <form class="booking-form">
 
-        <div class="filter" id="checkin-filter">
-            <label id="check-in-label">
-                <i class="fas fa-calendar-check"></i> Check-in Date
-            </label>
-            <div class="date-input" id="check-in-display">
-                <i class="fas fa-calendar"></i> Select date
-            </div>
-        </div>
-
-        <div class="filter" id="checkout-filter">
-            <label id="check-out-label">
-                <i class="fas fa-calendar-times"></i> Check-out Date
-            </label>
-            <div class="date-input" id="check-out-display">
-                <i class="fas fa-calendar"></i> Select date
-            </div>
+        <div class="form-group">
+            <label for="check-in">📅 Check-in</label>
+            <input type="date" id="check-in">
         </div>
 
         <div class="form-group">
-            <label for="guests">Guests</label>
+            <label for="check-out">📅 Check-out</label>
+            <input type="date" id="check-out">
+        </div>
+
+        <div class="form-group">
+            <label for="guests">👥 Guests</label>
             <select id="guests">
                 <option value="1">1 Guest</option>
                 <option value="2">2 Guests</option>
@@ -104,9 +97,10 @@
             </select>
         </div>
 
-        <button type="submit" class="book-btn">Check Availability</button>
+        <button type="submit" class="book-btn">✅ Check Availability</button>
     </form>
 </div>
+
 
 <div class="calendar" id="shared-calendar" aria-hidden="true">
     <div class="calendar-header">
@@ -170,16 +164,15 @@
 
         <input type="date" id="check-in" style="display:none">
     <input type="date" id="check-out" style="display:none">
-    <script src="script.js"></script>
-  <script src="theme.js"></script>
-    <script src="signin.js"></script>
-    <script src="translation.js"></script>
-
+    <script src="translation.js" defer></script>
+ <script src="script.js" defer></script>
+<script src="theme.js" defer></script>
+<script src="signin.js" defer></script>
 
    
  <script>
 
-        const languageToggle = document.getElementById('language-toggle');
+        /*const languageToggle = document.getElementById('language-toggle');*/
         let isArabic = false;
         
         const arabicTranslations = {
