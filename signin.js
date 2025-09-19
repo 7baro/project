@@ -1,3 +1,4 @@
+
 const signinBtn = document.getElementById('signin-btn');
 const signinModal = document.getElementById('signin-modal');
 const modalClose = document.getElementById('modal-close');
