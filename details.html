@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +6,8 @@
     <title>Property Details - Evento</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
- <link rel="stylesheet" href="dark.css">
-<link rel="stylesheet" href="detailstyle.css">
-
+    <link rel="stylesheet" href="dark.CSS">
+    <link rel="stylesheet" href="detailstyle.CSS">
 </head>
 <body>
     <div class="top-bar">
@@ -23,237 +21,132 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="index.html">Home</a> &gt; <a href="index.html">Chalets</a> &gt; <span>Luxury Mountain Chalet</span>
-        </div>
-
-        <div class="property-detail">
-            <div class="property-gallery">
-                <div class="main-image">Property Image</div>
-                <div class="thumbnails">
-                    <div class="thumbnail"></div>
-                    <div class="thumbnail"></div>
-                    <div class="thumbnail"></div>
-                    <div class="thumbnail"></div>
-                </div>
-            </div>
-
-            <div class="property-info">
-                <h1 class="property-title">placeholder</h1>
-                <div class="property-location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>placeholder</span>
-                </div>
-                <div class="property-price">??? / <span>night</span></div>
-
-                <div class="property-features">
-                    <div class="feature">
-                        <i class="fas fa-users"></i>
-                        <span>Up to ? guests</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-bed"></i>
-                        <span>? bedrooms</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-bath"></i>
-                        <span>? bathrooms</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-vector-square"></i>
-                        <span>??? m²</span>
-                    </div>
-                </div>
-
-                <div class="property-description">
-                    <p>placeholder</p>
-                </div>
-<div class="booking-widget">
-    <h3 class="booking-title">🏡 Book This Property</h3>
-    <form class="booking-form">
-
-        <div class="form-group">
-            <label for="check-in">📅 Check-in</label>
-            <input type="date" id="check-in">
-        </div>
-
-        <div class="form-group">
-            <label for="check-out">📅 Check-out</label>
-            <input type="date" id="check-out">
-        </div>
-
-        <div class="form-group">
-            <label for="guests">👥 Guests</label>
-            <select id="guests">
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-                <option value="5">5 Guests</option>
-                <option value="6">6 Guests</option>
-                <option value="7">7 Guests</option>
-                <option value="8">8 Guests</option>
-            </select>
-        </div>
-
-        <button type="submit" class="book-btn">✅ Check Availability</button>
-    </form>
-</div>
-
-
-<div class="calendar" id="shared-calendar" aria-hidden="true">
-    <div class="calendar-header">
-        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
-        <div class="month-year-display">
-            <span class="month-name" id="current-month">Month</span>
-            <span id="current-year">Year</span>
-        </div>
-        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html" class="translate" data-key="home">Home</a> &gt;
+      <a href="index.html" class="translate" data-key="chalets">Chalets</a> &gt;
+      <span class="translate" data-key="property-title">placeholder</span>
     </div>
 
-    <div class="calendar-grid" id="days-header"></div>
-    <div class="calendar-grid" id="calendar-days"></div>
-</div>
+    <div class="property-detail">
+      <div class="property-gallery">
+        <div class="main-image no-translate">Property Image</div>
+        <div class="thumbnails">
+          <div class="thumbnail"></div>
+          <div class="thumbnail"></div>
+          <div class="thumbnail"></div>
+          <div class="thumbnail"></div>
+        </div>
+      </div>
 
+      <div class="property-info">
+        <h1 class="property-title translate" data-key="property-title">placeholder</h1>
+        <div class="property-location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="translate" data-key="property-location">placeholder</span>
+        </div>
+        <div class="property-price translate" data-key="property-price">??? / night</div>
+
+        <div class="property-features">
+          <div class="feature"><i class="fas fa-users"></i><span class="translate" data-key="up-to-guests">Up to ? guests</span></div>
+          <div class="feature"><i class="fas fa-bed"></i><span class="translate" data-key="bedrooms">? bedrooms</span></div>
+          <div class="feature"><i class="fas fa-bath"></i><span class="translate" data-key="bathrooms">? bathrooms</span></div>
+          <div class="feature"><i class="fas fa-vector-square"></i><span class="translate" data-key="area">? m²</span></div>
+        </div>
+
+        <div class="property-description">
+          <p class="translate" data-key="property-description">placeholder.</p>
+        </div>
+
+                <div class="booking-widget">
+          <h3 class="booking-title translate" data-key="booking-title">Book it</h3>
+                    <form class="booking-form">
+                        <div class="filter" id="checkin-filter">
+                            <label id="check-in-label">
+                                <i class="fas fa-calendar-check"></i> Check-in Date
+                            </label>
+                            <div class="date-input" id="check-in-display">
+                                <i class="fas fa-calendar"></i> <span data-key="select-date">Select date</span>
+                            </div>
+                        </div>
+
+                        <div class="filter" id="checkout-filter">
+                            <label id="check-out-label">
+                                <i class="fas fa-calendar-times"></i> Check-out Date
+                            </label>
+                            <div class="date-input" id="check-out-display">
+                                <i class="fas fa-calendar"></i> <span data-key="select-date">Select date</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guests" class="translate" data-key="guests-label">Guests</label>
+                            <select id="guests">
+                                <option value="1">1 <span data-key="guest-text">guest</span></option>
+                                <option value="2">2 <span data-key="guests-text">guests</span></option>
+                                <option value="3">3 <span data-key="guests-text">guests</span></option>
+                                <option value="4">4 <span data-key="guests-text">guests</span></option>
+                                <option value="5">5 <span data-key="guests-text">guests</span></option>
+                                <option value="6">6 <span data-key="guests-text">guests</span></option>
+                                <option value="7">7 <span data-key="guests-text">guests</span></option>
+                                <option value="8">8 <span data-key="guests-text">guests</span></option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="book-btn translate" data-key="book-btn">Check Availability</button>
+                    </form>
+                </div>
+
+                <div class="calendar" id="shared-calendar" aria-hidden="true">
+                    <div class="calendar-header">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <div class="month-year-display">
+                            <span class="month-name" id="current-month">Month</span>
+                            <span id="current-year">Year</span>
+                        </div>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="calendar-grid" id="days-header"></div>
+                    <div class="calendar-grid" id="calendar-days"></div>
+                </div>
 
         <div class="property-details-section">
-            <h2 class="section-title">Amenities</h2>
-            <div class="amenities">
-                <div class="amenity">
-                    <i class="fas fa-wifi"></i>
-                    <span>High-Speed WiFi</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-parking"></i>
-                    <span>Free Parking</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-snowflake"></i>
-                    <span>Air Conditioning</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-tv"></i>
-                    <span>Smart TV</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-utensils"></i>
-                    <span>Fully Equipped Kitchen</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-fire"></i>
-                    <span>Fireplace</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-swimming-pool"></i>
-                    <span>Swimming Pool</span>
-                </div>
-                <div class="amenity">
-                    <i class="fas fa-hot-tub"></i>
-                    <span>Hot Tub</span>
-                </div>
-            </div>
+          <h2 class="section-title translate" data-key="amenities-title">Amenities</h2>
+          <div class="amenities">
+            <div class="amenity"><i class="fas fa-wifi"></i><span class="no-translate">High-Speed WiFi</span></div>
+            <div class="amenity"><i class="fas fa-parking"></i><span class="no-translate">Free Parking</span></div>
+            <div class="amenity"><i class="fas fa-snowflake"></i><span class="no-translate">Air Conditioning</span></div>
+            <div class="amenity"><i class="fas fa-tv"></i><span class="no-translate">Smart TV</span></div>
+            <div class="amenity"><i class="fas fa-utensils"></i><span class="no-translate">Fully Equipped Kitchen</span></div>
+            <div class="amenity"><i class="fas fa-fire"></i><span class="no-translate">Fireplace</span></div>
+            <div class="amenity"><i class="fas fa-swimming-pool"></i><span class="no-translate">Swimming Pool</span></div>
+            <div class="amenity"><i class="fas fa-hot-tub"></i><span class="no-translate">Hot Tub</span></div>
+          </div>
 
-            <h2 class="section-title">Description</h2>
-            <div class="property-description">
-                <p>placeholder</p>
-            </div>
+          <h2 class="section-title translate" data-key="description-title">Description</h2>
+          <div class="property-description"><p class="translate" data-key="property-description">placeholder</p></div>
 
-            <div class="reviews">
-                <h2 class="section-title">Guest Reviews</h2>
+          <div class="reviews">
+            <h2 class="section-title translate" data-key="reviews-title">Guest Reviews</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        <input type="date" id="check-in" style="display:none">
+        <input type="date" id="check-out" style="display:none">
+
 
         <input type="date" id="check-in" style="display:none">
-    <input type="date" id="check-out" style="display:none">
-    <script src="translation.js" defer></script>
+<input type="date" id="check-out" style="display:none">
+<script src="translation.js" defer></script>
  <script src="script.js" defer></script>
 <script src="theme.js" defer></script>
 <script src="signin.js" defer></script>
 
    
- <script>
 
-        /*const languageToggle = document.getElementById('language-toggle');*/
-        let isArabic = false;
-        
-        const arabicTranslations = {
-            "signin-text": "تسجيل الدخول",
-            "theme-text": "غامق",
-            "language-toggle": "English",
-            "property-title": "شاليه جبلي فاخر",
-            "property-location": "منتجع جبلي، منطقة عسير",
-            "property-price": "٣٥٠ ريال / ليلة",
-            "feature-guests": "حتى 8 ضيوف",
-            "feature-bedrooms": "4 غرف نوم",
-            "feature-bathrooms": "3 حمامات",
-            "feature-area": "٢٢٠ م²",
-            "booking-title": "احجز هذا العقار",
-            "checkin-label": "تاريخ الوصول",
-            "checkout-label": "تاريخ المغادرة",
-            "guests-label": "الضيوف",
-            "book-btn": "تحقق من التوافر",
-            "amenities-title": "المرافق",
-            "description-title": "الوصف",
-            "reviews-title": "تقييمات الضيوف"
-        };
-
-        const englishTranslations = {
-            "signin-text": "Sign In",
-            "theme-text": "Dark",
-            "language-toggle": "العربية",
-            "property-title": "Luxury Mountain Chalet",
-            "property-location": "Mountain Resort, Asir Province",
-            "property-price": "$350 / night",
-            "feature-guests": "Up to 8 guests",
-            "feature-bedrooms": "4 bedrooms",
-            "feature-bathrooms": "3 bathrooms",
-            "feature-area": "220 m²",
-            "booking-title": "Book This Property",
-            "checkin-label": "Check-in",
-            "checkout-label": "Check-out",
-            "guests-label": "Guests",
-            "book-btn": "Check Availability",
-            "amenities-title": "Amenities",
-            "description-title": "Description",
-            "reviews-title": "Guest Reviews"
-        };
-
-        function applyTranslations(translations) {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[key]) {
-                    element.textContent = translations[key];
-                }
-            });
-            
-            if (document.getElementById('signin-text')) {
-                document.getElementById('signin-text').textContent = translations['signin-text'];
-            }
-            if (document.getElementById('theme-text')) {
-                document.getElementById('theme-text').textContent = translations['theme-text'];
-            }
-            if (languageToggle) {
-                languageToggle.innerHTML = `<i class="fas fa-globe"></i>${translations['language-toggle']}`;
-            }
-        }
-
-        if (languageToggle) {
-            languageToggle.addEventListener('click', () => {
-                isArabic = !isArabic;
-                if (isArabic) {
-                    document.body.classList.add('rtl');
-                    document.body.setAttribute('dir', 'rtl');
-                    applyTranslations(arabicTranslations);
-                } else {
-                    document.body.classList.remove('rtl');
-                    document.body.removeAttribute('dir');
-                    applyTranslations(englishTranslations);
-                }
-            });
-        }
-
-        initTheme();
-        applyTranslations(englishTranslations); 
-    </script> 
         <input type="date" id="check-in" style="display:none">
     <input type="date" id="check-out" style="display:none">
 
@@ -357,6 +250,7 @@
     </div>
   </div>
 </div>
+
 
 
 </body>
