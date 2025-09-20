@@ -1,4 +1,4 @@
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
         body {
             background-color: #FDF6EC;
@@ -306,83 +306,75 @@
             margin-bottom: 10px;
         }
 
-        /* Dark mode styles */
-        body.dark {
-            background-color: #0f1216;
-            color: #e5e7eb;
-        }
-        body.dark .top-bar {
-            background: linear-gradient(135deg, #0d2535 0%, #0a1b27 100%);
-            color: #e5e7eb;
-            box-shadow: 0 2px 14px rgba(0,0,0,0.5);
-        }
-        body.dark .lang-btn,
-        body.dark .theme-btn {
-            background-color: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.12);
-            color: #e5e7eb;
-        }
-        body.dark .signin-btn { background-color: #7c3aed; }
-        body.dark .signin-btn:hover { background-color: #6d28d9; }
-
-        body.dark .breadcrumb {
-            color: #a7b0bb;
+        /* Calendar Styles */
+        .calendar {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
-        body.dark .breadcrumb a {
-            color: #9cc4e2;
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        body.dark .property-title {
-            color: #9cc4e2;
+        .month-year-display {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d5c7f;
         }
 
-        body.dark .property-location {
-            color: #b8c2cc;
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
         }
 
-        body.dark .property-features i {
-            color: #7cb8e8;
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 10px;
+            color: #2d5c7f;
         }
 
-        body.dark .booking-widget {
-            background: #12171d;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        .calendar-day {
+            text-align: center;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        body.dark .booking-title {
-            color: #9cc4e2;
+        .calendar-day:hover {
+            background: #e6f7ff;
         }
 
-        body.dark .booking-form label {
-            color: #9cc4e2;
+        .calendar-day.selected {
+            background: #2d5c7f;
+            color: white;
         }
 
-        body.dark .booking-form input, 
-        body.dark .booking-form select {
-            background: #0f1419;
-            color: #e5e7eb;
-            border-color: #223140;
+        .calendar-day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
         }
 
-        body.dark .booking-form input:focus, 
-        body.dark .booking-form select:focus {
-            border-color: #3a86ff;
-            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.15);
+        .date-input {
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        body.dark .amenity {
-            background: #12171d;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        .date-input:hover {
+            border-color: #2d5c7f;
         }
-
-        body.dark .review {
-            background: #12171d;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* RTL styles */
-        body.rtl .logo i { margin-right: 0; margin-left: 10px; }
-        body.rtl .property-location i { margin-right: 0; margin-left: 10px; }
-        body.rtl .feature i { margin-right: 0; margin-left: 10px; }
-        body.rtl .amenity i { margin-right: 0; margin-left: 15px; }
