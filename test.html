@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Your Property - Evento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="test3.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo"><i class="fas fa-house"></i>Evento</div>
+        <div class="top-buttons">
+            <button class="lang-btn" id="language-toggle"><i class="fas fa-globe"></i>العربية</button>
+            <button class="theme-btn" id="theme-toggle" aria-pressed="false" title="Toggle theme">
+                <i class="fas fa-moon" aria-hidden="true"></i><span id="theme-text">Dark</span>
+            </button>
+            <button class="signin-btn" id="signin-btn"><i class="fas fa-user"></i><span >مفروض مسجل</span></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> &gt; <a href="owner-dashboard.html">My Properties</a> &gt; <span>Manage Property</span>
+        </div>
+
+        <div class="save-status" id="save-status">
+            <i class="fas fa-check-circle"></i>
+            <span>All changes saved successfully!</span>
+        </div>
+
+        <div class="property-detail">
+            <div>
+                <div class="property-gallery">
+                    <div class="main-image">
+                        <img id="main-media" src="" alt="Property image">
+                        <video id="main-video" controls>
+                            Your browser does not support the video tag.
+                        </video>
+                        <div id="main-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>Upload images or videos</span>
+                        </div>
+                        
+                        <button class="main-image-nav main-image-prev" aria-label="Previous image" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="main-image-nav main-image-next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="thumbnails-container">
+                        <button class="thumbnail-arrow left-arrow" aria-label="Previous thumbnails">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="thumbnails" id="media-thumbnails">
+                        </div>
+                        <button class="thumbnail-arrow right-arrow" aria-label="Next thumbnails">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="media-upload">
+                        <input type="file" id="image-upload" accept="image/*" multiple style="display: none;">
+                        <input type="file" id="video-upload" accept="video/*" multiple style="display: none;">
+                        
+                        <button class="upload-btn" id="upload-image-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Images</span>
+                        </button>
+                        <button class="upload-btn" id="upload-video-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Videos</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="property-info">
+                    <input type="text" class="property-title-editable" value="example" placeholder="Property Title">
+                    
+                    <div class="property-location-editable">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" value="example" placeholder="Property Location">
+                    </div>
+
+                    <div class="property-price-editable">
+                        <span class="currency">$</span>
+                        <input type="number" min="0" step="10" value="350" class="price-input">
+                        <span class="price-label">/ night</span>
+                    </div>
+
+                    <div class="property-features-editable">
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Up to </span>
+                            <input type="number" min="1" value="8" class="feature-input" data-feature="guests">
+                            <span> guests</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <input type="number" min="1" value="4" class="feature-input" data-feature="bedrooms">
+                            <span> bedrooms</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bath"></i>
+                            <input type="number" min="1" value="3" class="feature-input" data-feature="bathrooms">
+                            <span> bathrooms</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-vector-square"></i>
+                            <input type="number" min="1" value="220" class="feature-input" data-feature="size">
+                            <span> m²</span>
+                        </div>
+                    </div>
+
+                    <div class="property-description-editable">
+                        <h3>Description</h3>
+                        <textarea placeholder="Describe your property in detail..."></textarea>
+                    </div>
+
+                    <div class="host-info">
+                        <div class="host-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="host-details">
+                            <h3>Hosted by You</h3>
+                            <span class="edit-profile">Edit profile</span>
+                        </div>
+                    </div>
+
+                    <div class="tabs-section">
+                        <div class="tabs">
+                            <button class="tab active" data-tab="amenities">
+                                <i class="fas fa-list"></i>Amenities
+                            </button>
+                            <button class="tab" data-tab="reviews">
+                                <i class="fas fa-star"></i>Reviews
+                            </button>
+                            <button class="tab" data-tab="location">
+                                <i class="fas fa-map-marker-alt"></i>Location
+                            </button>
+                        </div>
+
+
+                        <div class="tab-contents">
+                            <div class="tab-content active" id="amenities-tab">
+                                <div class="amenities-management">
+                            <div class="add-amenity-section">
+                                <select class="amenity-select" id="amenity-select">
+                                    <option value="">Select standard amenity</option>
+                                    <option value="wifi" data-icon="wifi">High-Speed WiFi</option>
+                                    <option value="parking" data-icon="parking">Free Parking</option>
+                                    <option value="ac" data-icon="snowflake">Air Conditioning</option>
+                                    <option value="tv" data-icon="tv">Smart TV</option>
+                                    <option value="kitchen" data-icon="utensils">Fully Equipped Kitchen</option>
+                                    <option value="fireplace" data-icon="fire">Fireplace</option>
+                                    <option value="pool" data-icon="swimming-pool">Swimming Pool</option>
+                                    <option value="hottub" data-icon="hot-tub">Hot Tub</option>
+                                </select>
+                                
+                                <div class="custom-amenity">
+                                    <input type="text" id="custom-amenity-input" placeholder="Or add custom amenity">
+                                    <button class="add-btn" id="add-custom-amenity">Add</button>
+                                </div>
+                            </div>
+                            
+                            <div class="selected-amenities" id="selected-amenities">
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="tab-content" id="reviews-tab">
+                                <div class="reviews">
+                            <div class="review">
+                                <div class="review-header">
+                                </div>
+                                <div class="review-rating">
+             
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="tab-content" id="location-tab">
+                                <div class="location-content">
+                                    <h3>Property Location</h3>
+                                    <div class="map-placeholder">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        <p>Interactive map would be displayed here</p>
+                                    </div>
+                                    <div class="location-notes">
+                                        <label>Location Notes:</label>
+                                        <textarea placeholder="Add any important location details or directions...">Mountain Resort Area, Asir Province, Saudi Arabia</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-widget">
+                <h3 class="booking-title">Booking Settings</h3>
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label>Minimum Stay (nights)</label>
+                        <input type="number" min="1" value="2" id="min-stay">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Maximum Guests</label>
+                        <input type="number" min="1" value="8" id="max-guests">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Check-in Time</label>
+                        <select id="checkin-time">
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Check-out Time</label>
+                        <select id="checkout-time">
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Security Deposit ($)</label>
+                        <input type="number" min="0" value="200" id="security-deposit">
+                    </div>
+
+                    <button type="button" class="save-settings-btn">Save Booking Settings</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-primary" id="publish-btn">
+                <i class="fas fa-rocket"></i> Publish Changes
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Delete Media</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this media? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-delete">Cancel</button>
+                <button class="btn-danger" id="confirm-delete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="test2.js"></script>
+        <script src="translation.js"></script>
+            <script src="theme.js"></script>
+
+
+
+</body>
+</html>

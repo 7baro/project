@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>placeholder - Evento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="detailstyle.CSS">
+    <link rel="stylesheet" href="dark.CSS">
+        <link rel="stylesheet" href="signin.css">
+
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo" onclick="window.location.href='index.html'"><i class="fas fa-house"></i>Evento</div>
+        <div class="top-buttons">
+            <button class="lang-btn" id="language-toggle"><i class="fas fa-globe"></i>العربية</button>
+            <button class="theme-btn" id="theme-toggle" aria-pressed="false" title="Toggle theme">
+                <i class="fas fa-moon" aria-hidden="true"></i><span id="theme-text">Dark</span>
+            </button>
+            <button class="signin-btn" id="signin-btn"><i class="fas fa-user"></i><span id="signin-text">Sign In</span></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> &gt; <a href="index.html">Chalets</a> &gt; <span>example</span>
+        </div>
+
+        <div class="property-detail">
+            <div class="property-content">
+                <div class="property-gallery">
+                    <div class="main-image">
+                        <img id="main-media" src="" alt="Property image">
+                        <video id="main-video" controls>
+                            Your browser does not support the video tag.
+                        </video>
+                        <div id="main-placeholder">
+                            <i class="fas fa-mountain"></i>
+                            <span>Select an image or video</span>
+                        </div>
+                        
+                        <button class="main-image-nav main-image-prev" aria-label="Previous image" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="main-image-nav main-image-next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="thumbnails-container">
+                        <button class="thumbnail-arrow left-arrow" aria-label="Previous thumbnails">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="thumbnails">
+                            <div class="thumbnail image-thumbnail active" 
+                                 data-src="https://www.medina-hotels-sa.com/data/Imgs/OriginalPhoto/13377/1337709/1337709098/img-medina-1.JPEG" 
+                                 data-type="image"
+                                 style="background-image: url('https://www.medina-hotels-sa.com/data/Imgs/OriginalPhoto/13377/1337709/1337709098/img-medina-1.JPEG')">
+                                <span class="media-indicator">IMG</span>
+                            </div>
+                            <div class="thumbnail image-thumbnail" 
+                                 data-src="https://img.gathern.co/1400x0/1/dY6FiVl8LdQ3U_R9dWFoG3idcD21QQUm.jpg" 
+                                 data-type="image"
+                                 style="background-image: url('https://img.gathern.co/1400x0/1/dY6FiVl8LdQ3U_R9dWFoG3idcD21QQUm.jpg')">
+                                <span class="media-indicator">IMG</span>
+                            </div>
+                            
+                            <div class="thumbnail video-thumbnail" 
+                                 data-src="https://cdn.gathern.co/1/x3_6RTksszgUh542bv9if75JV03FlVMV.mp4" 
+                                 data-type="video"
+                                 style="background-image: url('https://cdn.gathern.co/1/x3_6RTksszgUh542bv9if75JV03FlVMV.mp4')">
+                                <span class="media-indicator">VID</span>
+                            </div>
+                            <div class="thumbnail image-thumbnail" 
+                                 data-src="https://img.gathern.co/1400x0/1/mxwzSTgKUfEHzu0EGuv45gEKXaLh2nQt.jpg" 
+                                 data-type="image"
+                                 style="background-image: url('https://img.gathern.co/1400x0/1/mxwzSTgKUfEHzu0EGuv45gEKXaLh2nQt.jpg')">
+                                <span class="media-indicator">IMG</span>
+                            </div>
+                        </div>
+                        <button class="thumbnail-arrow right-arrow" aria-label="Next thumbnails">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="property-info">
+                    <h1 class="property-title">example</h1>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>example, example</span>
+                    </div>
+                    <div class="property-price translate" data-key="property-price">??? / night</div>
+
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <span class="translate" data-key="up-to-guests">Up to ? guests</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bed"></i>
+                        <span class="translate" data-key="bedrooms">? bedrooms</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bath"></i>
+                        <span class="translate" data-key="bathrooms">? bathrooms</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-vector-square"></i>
+                        <span class="translate" data-key="area">? m²</span>
+                    </div>
+
+                    <div class="property-description">
+                        <p>example</p>
+                    </div>
+
+                    <div class="host-info">
+                        <div class="host-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="host-details">
+                            <h3>Hosted by ...</h3>
+                        </div>
+                    </div>
+
+                    <div class="tabs-section">
+                        <div class="tabs">
+                            <button class="tab active" data-tab="amenities">
+                                <i class="fas fa-list"></i>Amenities
+                            </button>
+                            <button class="tab" data-tab="reviews">
+                                <i class="fas fa-star"></i>Reviews
+                            </button>
+                            <button class="tab" data-tab="location">
+                                <i class="fas fa-map-marker-alt"></i>Location
+                            </button>
+                        </div>
+
+                        <div class="tab-content active" id="amenities-tab">
+                            <div class="amenities-grid">
+                                <div class="amenity-item">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>High-Speed WiFi</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-parking"></i>
+                                    <span>Free Parking</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-snowflake"></i>
+                                    <span>Air Conditioning</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>Smart TV</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Fully Equipped Kitchen</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-fire"></i>
+                                    <span>Fireplace</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-swimming-pool"></i>
+                                    <span>Swimming Pool</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-hot-tub"></i>
+                                    <span>Hot Tub</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="reviews-tab">
+                            <div class="reviews">
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div class="reviewer">expmle</div>
+                                        <div class="review-date">example</div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <p>example</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="location-tab">
+                            <h2 class="section-title translate" data-key="location-title">Location</h2>
+                            <div class="map-container">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <span style="margin-left: 1rem;">Interactive map would be displayed here</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-sidebar">
+                <div class="booking-widget">
+                    <h3 class="booking-title translate" data-key="booking-title">Book it</h3>
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <label id="check-in-label">
+                                <i class="fas fa-calendar-check"></i> Check-in Date
+                            </label>
+                            <div class="date-input" id="check-in-display">
+                                <i class="fas fa-calendar"></i> <span data-key="select-date">Select date</span>
+                            </div>
+                            <div class="calendar" id="checkin-calendar" aria-hidden="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="check-out-label">
+                                <i class="fas fa-calendar-times"></i> Check-out Date
+                            </label>
+                            <div class="date-input" id="check-out-display">
+                                <i class="fas fa-calendar"></i> <span data-key="select-date">Select date</span>
+                            </div>
+                            <div class="calendar" id="checkout-calendar" aria-hidden="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guests" class="translate" data-key="guests-label">Guests</label>
+                            <select id="guests">
+                                <option value="1">1 <span data-key="guest-text">guest</span></option>
+                                <option value="2">2 <span data-key="guests-text">guests</span></option>
+                                <option value="3">3 <span data-key="guests-text">guests</span></option>
+                                <option value="4">4 <span data-key="guests-text">guests</span></option>
+                                <option value="5">5 <span data-key="guests-text">guests</span></option>
+                                <option value="6">6 <span data-key="guests-text">guests</span></option>
+                                <option value="7">7 <span data-key="guests-text">guests</span></option>
+                                <option value="8">8 <span data-key="guests-text">guests</span></option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="book-btn translate" data-key="book-btn">Check Availability</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar" id="shared-calendar" aria-hidden="true">
+            <div class="calendar-header">
+                <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                <div class="month-year-display">
+                    <span class="month-name" id="current-month">Month</span>
+                    <span id="current-year">Year</span>
+                </div>
+                <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="calendar-grid" id="days-header"></div>
+            <div class="calendar-grid" id="calendar-days"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="signin-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="welcome-title" id="welcome-title">Welcome!</h2>
+                <p class="welcome-subtitle" id="welcome-subtitle">
+                    Enter your phone number to create account or login
+                </p>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-step active" id="step-1">
+                    <div class="form-group">
+                        <label for="phone-number">Phone Number</label>
+                        <div class="phone-input-group">
+                            <div class="form-group country-code">
+                                <select id="country-code">
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+966" selected>🇸🇦 +966</option>
+                                    <option value="+971">🇦🇪 +971</option>
+                                    <option value="+20">🇪🇬 +20</option>
+                                    <option value="+973">🇧🇭 +973</option>
+                                    <option value="+974">🇶🇦 +974</option>
+                                    <option value="+968">🇴🇲 +968</option>
+                                    <option value="+962">🇯🇴 +962</option>
+                                    <option value="+963">🇸🇾 +963</option>
+                                    <option value="+964">🇮🇶 +964</option>
+                                    <option value="+961">🇱🇧 +961</option>
+                                </select>
+                            </div>
+                            <div class="form-group phone-number">
+                                <input type="tel" id="phone-number" placeholder="Enter your phone number" />
+                                <i class="fas fa-times-circle input-icon error-icon"></i>
+                                <i class="fas fa-check-circle input-icon success-icon"></i>
+                                <div class="error-message">
+                                    Please enter a valid phone number
+                                </div>
+                                <div class="success-message">Phone number looks good!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-step" id="step-2">
+                    <h2>Personal Information</h2>
+                    <p>Please provide your personal details</p>
+
+                    <div class="name-group">
+                        <div class="form-group">
+                            <input type="text" id="first-name" placeholder="First Name" />
+                            <i class="fas fa-times-circle input-icon error-icon"></i>
+                            <i class="fas fa-check-circle input-icon success-icon"></i>
+                            <div class="error-message">
+                                Please enter a valid name
+                            </div>
+                            <div class="success-message">First name looks good!</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="family-name" placeholder="Family Name" />
+                            <i class="fas fa-times-circle input-icon error-icon"></i>
+                            <i class="fas fa-check-circle input-icon success-icon"></i>
+                            <div class="error-message">
+                                Please enter a valid name
+                            </div>
+                            <div class="success-message">Family name looks good!</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Address" />
+                        <i class="fas fa-times-circle input-icon error-icon"></i>
+                        <i class="fas fa-check-circle input-icon success-icon"></i>
+                        <div class="error-message">Please enter a valid email address</div>
+                        <div class="success-message">Email looks good!</div>
+                    </div>
+                </div>
+
+                <div class="modal-step" id="step-3">
+                    <div class="modal-thankyou">
+                        <i class="fas fa-check-circle"></i>
+                        <h3 id="thankyou-title">Success!</h3>
+                        <p id="thankyou-message">
+                            Your account has been created successfully.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="modal-btn btn-back" id="btn-back" style="display: none">
+                    Back
+                </button>
+                <button class="modal-btn btn-next" id="btn-next">Continue</button>
+                <button class="modal-btn btn-submit" id="btn-submit" style="display: none">
+                    Create Account
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <input type="date" id="check-in" style="display:none">
+    <input type="date" id="check-out" style="display:none">
+    
+    <script src="theme.js"></script>
+    <script src="signin.js"></script>
+    <script src="translation.js"></script>
+    <script src="details.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
