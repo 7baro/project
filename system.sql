@@ -1,6 +1,7 @@
+-- إنشاء قاعدة البيانات
+CREATE DATABASE chalet_system;
+USE chalet_system;
 
-CREATE database chalet_system;
-use chalet_system;
 -- 1. جدول الملاك
 CREATE TABLE owners (
     owner_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -77,4 +78,76 @@ CREATE TABLE bookings (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (chalet_id) REFERENCES chalets(chalet_id)
+);
+
+-- 8. جدول التحليلات
+CREATE TABLE analytics (
+    analytics_id INT PRIMARY KEY AUTO_INCREMENT,
+    chalet_id INT,
+    views INT DEFAULT 0,
+    clicks INT DEFAULT 0,
+    inquiries INT DEFAULT 0,
+    report_date DATE,
+    FOREIGN KEY (chalet_id) REFERENCES chalets(chalet_id)
+);
+
+-- 9. جدول الأرباح
+CREATE TABLE earnings (
+    earning_id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT,
+    chalet_id INT,
+    amount DECIMAL(10,2),
+    payout_status ENUM('pending', 'paid') DEFAULT 'pending',
+    payout_date DATE,
+    FOREIGN KEY (booking_id) REFERENCES bookings(booking_id),
+    FOREIGN KEY (chalet_id) REFERENCES chalets(chalet_id)
+);
+
+-- 10. جدول الإعدادات
+CREATE TABLE settings (
+    setting_id INT PRIMARY KEY AUTO_INCREMENT,
+    owner_id INT,
+    language_preference VARCHAR(10) DEFAULT 'en',
+    theme_preference VARCHAR(10) DEFAULT 'light',
+    notifications_enabled BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (owner_id) REFERENCES owners(owner_id)
+);
+
+-- 11. جدول الدعم الفني
+CREATE TABLE help_requests (
+    request_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    subject VARCHAR(150),
+    message TEXT,
+    status ENUM('open', 'resolved', 'closed') DEFAULT 'open',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- 12. جدول التقييمات
+CREATE TABLE reviews (
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
+    chalet_id INT,
+    user_id INT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (chalet_id) REFERENCES chalets(chalet_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- 13. جدول المرافق
+CREATE TABLE amenities (
+    amenity_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    icon VARCHAR(50)
+);
+
+-- 14. جدول ربط الشاليهات بالمرافق
+CREATE TABLE chalet_amenities (
+    chalet_id INT,
+    amenity_id INT,
+    PRIMARY KEY (chalet_id, amenity_id),
+    FOREIGN KEY (chalet_id) REFERENCES chalets(chalet_id),
+    FOREIGN KEY (amenity_id) REFERENCES amenities(amenity_id)
 );
