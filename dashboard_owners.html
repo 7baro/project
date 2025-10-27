@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard - Evento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main_page.CSS">
+    <link rel="stylesheet" href="dark.CSS">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FDF6EC;
+            color: #2E2E2E;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: linear-gradient(135deg, #1E3A8A 0%, #3FBFBF 100%);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .top-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .lang-btn, .signin-btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .signin-btn {
+            background-color: #D4AF37;
+            color: white;
+            border: none;
+        }
+
+        .signin-btn:hover {
+            background-color: #c19d2b;
+            transform: translateY(-2px);
+        }
+
+        .theme-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: #4B5563;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(30, 58, 138, 0.1);
+            color: #1E3A8A;
+        }
+
+        .sidebar-menu i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .dashboard-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .dashboard-header {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .dashboard-header h1 {
+            font-size: 32px;
+            color: #1E3A8A;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            color: #4B5563;
+            font-size: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-icon.blue {
+            background: rgba(30, 58, 138, 0.1);
+            color: #1E3A8A;
+        }
+
+        .stat-icon.green {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+        }
+
+        .stat-icon.orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+        }
+
+        .stat-icon.purple {
+            background: rgba(147, 51, 234, 0.1);
+            color: #9333ea;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1E3A8A;
+        }
+
+        .stat-label {
+            color: #4B5563;
+            font-size: 14px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            color: #1E3A8A;
+        }
+
+        .btn-primary {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background: #c19d2b;
+            transform: translateY(-2px);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .property-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-image {
+            height: 180px;
+            background: linear-gradient(120deg, #2d5c7f 0%, #4a8db7 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .property-image.placeholder {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .property-image.placeholder i {
+            font-size: 48px;
+            opacity: 0.7;
+        }
+
+        .property-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-published {
+            background: #22c55e;
+            color: white;
+        }
+
+        .status-draft {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1E3A8A;
+            margin-bottom: 8px;
+        }
+
+        .property-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4B5563;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .property-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #4B5563;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .property-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .property-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bookings-table th, .bookings-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .bookings-table th {
+            background: #f9fafb;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .bookings-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .booking-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-confirmed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4b5563;
+        }
+
+        .empty-state p {
+            color: #6b7280;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+
+
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bookings-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+        <link rel="stylesheet" href="dark.CSS">
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evento Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo" onclick="window.location.href='index.html'"><i class="fas fa-house"></i>Evento</div>
+    <div class="top-buttons">
+      <button class="lang-btn" id="language-toggle"><i class="fas fa-globe"></i><span class="translate" data-key="language-toggle"></span></button>
+      <button class="theme-btn" id="theme-toggle" aria-pressed="false" title="Toggle theme">
+        <i class="fas fa-moon" aria-hidden="true"></i><span id="theme-text">Dark</span>
+      </button>
+      <button class="signin-btn" id="signin-btn"><i class="fas fa-user"></i><span id="signin-text" class="translate" data-key="signin-text"></span></button>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="user-info">
+        <h3 class="translate" data-key="welcome-back"></h3>
+        <p class="translate" data-key="owner-name"></p>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> <span class="translate" data-key="dashboard"></span></a></li>
+        <li><a href="#"><i class="fas fa-home"></i> <span class="translate" data-key="my-properties"></span></a></li>
+        <li><a href="#"><i class="fas fa-calendar-check"></i> <span class="translate" data-key="bookings"></span></a></li>
+        <li><a href="#"><i class="fas fa-wallet"></i> <span class="translate" data-key="earnings"></span></a></li>
+        <li><a href="#"><i class="fas fa-chart-line"></i> <span class="translate" data-key="analytics"></span></a></li>
+        <li><a href="#"><i class="fas fa-cog"></i> <span class="translate" data-key="settings"></span></a></li>
+        <li><a href="#"><i class="fas fa-question-circle"></i> <span class="translate" data-key="help-center"></span></a></li>
+      </ul>
+    </aside>
+
+    <main class="dashboard-content">
+      <div class="dashboard-header">
+        <h1 class="translate" data-key="dashboard-title"></h1>
+        <p class="translate" data-key="dashboard-subtitle"></p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-value">0</div>
+              <div class="stat-label translate" data-key="total-properties"></div>
+            </div>
+            <div class="stat-icon blue"><i class="fas fa-home"></i></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-value">0</div>
+              <div class="stat-label translate" data-key="upcoming-bookings"></div>
+            </div>
+            <div class="stat-icon green"><i class="fas fa-calendar-check"></i></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-value">SAR 0</div>
+              <div class="stat-label translate" data-key="monthly-earnings"></div>
+            </div>
+            <div class="stat-icon orange"><i class="fas fa-wallet"></i></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-value">0.0</div>
+              <div class="stat-label translate" data-key="average-rating"></div>
+            </div>
+            <div class="stat-icon purple"><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="translate" data-key="my-properties"></h2>
+          <button class="btn-primary translate" id="add-property-btn" data-key="add-new-property"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="properties-grid">
+          <div class="empty-state">
+            <i class="fas fa-home"></i>
+            <h3 class="translate" data-key="no-properties"></h3>
+            <p class="translate" data-key="add-property"></p>
+            <button class="btn-primary" style="margin-top: 20px;" onclick="window.location.href='test.html'">
+              <i class="fas fa-plus"></i> <span class="translate" data-key="add-property-btn"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="translate" data-key="recent-bookings"></h2>
+          <button class="btn-primary"><i class="fas fa-eye"></i> <span class="translate" data-key="view-all"></span></button>
+        </div>
+        <div class="empty-state">
+          <i class="fas fa-calendar-times"></i>
+          <h3 class="translate" data-key="no-bookings"></h3>
+          <p class="translate" data-key="bookings-placeholder"></p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="translate" data-key="performance-overview"></h2>
+          <button class="btn-primary"><i class="fas fa-download"></i> <span class="translate" data-key="export-report"></span></button>
+        </div>
+        <div class="empty-state">
+          <i class="fas fa-chart-bar"></i>
+          <h3 class="translate" data-key="no-data"></h3>
+          <p class="translate" data-key="performance-placeholder"></p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const addPropertyBtn = document.getElementById('add-property-btn');
+      addPropertyBtn.addEventListener('click', function () {
+        // Add property logic
+      });
+
+      const menuItems = document.querySelectorAll('.sidebar-menu a');
+      menuItems.forEach(item => {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          menuItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      applyTranslations(isArabic ? arabicTranslations : englishTranslations);
+    });
+  </script>
+
+  <script src="theme.js"></script>
+  <script src="translation.js"></script>
+</body>
+</html>
